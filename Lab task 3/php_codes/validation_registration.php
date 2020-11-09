@@ -27,9 +27,9 @@
 			$user->addChild("username",$uname);
 			$user->addChild("password",$pass);
 			$user->addChild("type","user");
-			echo "<pre>";
-			print_r($users);
-			echo "</pre>";
+			//echo "<pre>";
+			//print_r($users);
+			//echo "</pre>";
 			
 			$xml = new DOMDocument("1.0");
 			$xml->preserveWhiteSpace=false;
@@ -39,6 +39,9 @@
 			
 			$file = fopen("data.xml","w");
 			fwrite($file,$xml->saveXML());
+			
+			header("Location: login.php");
+			
 		}
 	}
 	

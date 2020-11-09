@@ -1,10 +1,10 @@
-<?php include_once "php_codes/validation_login.php" ;?>
+<?php include_once "php_codes/validation_registration.php" ;?>
 <html>
-	<head><title>
-		Login
-	</title></head>
+	<head></head>
 	<body>
+		<?php include_once "header.php";?>
 		<fieldset>
+		* Fields are required
 			<form action="" method="post">
 				<table>
 					<tr>
@@ -21,7 +21,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
-							<input type="submit" name="login" value="login">
+							<input type="submit" name="register" value="register">
 						</td>
 					</tr>
 				</table>
