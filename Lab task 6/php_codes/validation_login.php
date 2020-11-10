@@ -36,6 +36,7 @@
 			if($is_done )
 			{
 				echo "This is successful<br>";
+				setcookie("username", $_POST["uname"], time() + 3600);
 				header("Location: Dashboard.php");
 			}
 			else

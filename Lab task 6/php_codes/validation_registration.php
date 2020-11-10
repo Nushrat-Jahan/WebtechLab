@@ -159,7 +159,7 @@
 			$xml->loadXML($users->asXML());
 			
 			
-			$file = fopen("admins.xml.xml","w");
+			$file = fopen("admins.xml","w");
 			fwrite($file,$xml->saveXML());
 			
 			//header("Location: login.php");

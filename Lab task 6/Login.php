@@ -24,6 +24,11 @@
 							<input type="submit" name="login" value="login">
 						</td>
 					</tr>
+					<tr>
+    				<td>
+    					<a href="Registration.php">Create a new account</a>
+    				</td>
+    			</tr>
 				</table>
 			</form>
 		</fieldset>

@@ -1,31 +1,4 @@
-
 <?php
-  if (!isset($_COOKIE["username"])) {
-    header("Location: Login.php");
-  }
-?>
-<html>
-	<head><title>
-		Dashboard
-	</title></head>
-	<body>
-				<img src="resources/headerlogo1">
-				<img src="resources/headerlogo1">
-				<table border="2"> 
-					<tr>
-						<td>
-							<a href="Addbook.php">Add New Book</a>
-						</td>
-					</tr>
-						<td> SR.NO</td>
-						<td>NAME</td>
-						<td>PUBLISHER</td>
-						<td>ISBN</td>
-						<td>PRICE</td>
-						<td>IMAGE</td>
-						<td>DELETE</td>
-					</tr>
-					<?php
 	$books=simplexml_load_file("books.xml");
 	
 	$data=books->book;
@@ -58,6 +31,3 @@
 				
 			}
 ?>
-				</table>
-	</body>
-</html>
