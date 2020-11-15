@@ -4,9 +4,10 @@
 		Login
 	</title></head>
 	<body>
-		<fieldset>
-			<form action="" method="post">
-				<table>
+		<form action="" method="post" style="width: 800px";>
+			<fieldset style="background-color: lightgray;">
+				<table align="center">
+					<h1 align="center">Login</h1>
 					<tr>
 						<td>Username:</td>
 						<td><input type="text" value="<?php echo $uname?>" name="uname"></td>
@@ -26,11 +27,11 @@
 					</tr>
 					<tr>
     				<td>
-    					<a href="Registration.php">Create a new account</a>
+    					<a href="Registration.php">Not registered yet?</a>
     				</td>
     			</tr>
 				</table>
-			</form>
-		</fieldset>
+			</fieldset>
+		</form>
 	</body>
 </html>

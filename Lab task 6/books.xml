@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <books>
-	<book>
-	<no> 1</no>
-	<name>A dictionary of</br> Architecture</name>
-	<publisher>THE BOOK SHOP</publisher>
-	<isbn>8964636</isbn>
-	<price>500</price>
-	<image>resources/headerlogo1.png</image>
-	<del>X</del>
-	</book>
+  <book>
+    <bookname>A Dictionary of Architecture</bookname>
+    <publisher>THE BOOK SHOP</publisher>
+    <isbn>89564636</isbn>
+    <pg>500</pg>
+    <price>1000</price>
+  </book>
 </books>

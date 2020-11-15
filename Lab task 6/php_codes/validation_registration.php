@@ -16,80 +16,54 @@
 	$err_contact="";
 	$city="";
 	$err_city="";
-	$hasError=false;
-	if(isset($_POST["register"])){
+	$has_error=false;
+	if(isset($_POST["ok"])){
 		
-		//Full Name
+		//Full name
 		if(empty($_POST["fname"])){
-			$err_fname="<sub>Please write down your full name<sub>";
-			$has_error = true;
+			$err_fname="<sub>Full name Required</sub>";
+			$has_error =true;	
 		}
 		else{
-			$fname=htmlspecialchars($_POST["fname"]);
+			$fname = htmlspecialchars($_POST["fname"]);
 		}
 		
 		//Username
 		if(empty($_POST["uname"])){
-			$err_uname="<sub>Please give an username</sub>";
-			$has_error = true;
-		}
-		elseif(strpos($_POST["uname"]," ")){
-			$err_uname="<sub>No space is allowed in username</sub>";
-			$has_error = true;
-		}
-		elseif(strlen($_POST["uname"])<6){
-			$err_uname="<sub>Username must be atleast 6 character</sub>";
-			$has_error = true;
+			$err_uname="<sub>Username Required</sub>";
+			$has_error =true;	
 		}
 		else{
-			$uname=htmlspecialchars($_POST["uname"]);
+			$uname = htmlspecialchars($_POST["uname"]);
 		}
 		
 		//Password
-		 if (empty($_POST["pass"])) {
-   	  	$pass = "Password required*";
-   	    }
-   	    else {
-   	  	$getPass = $_POST["pass"];
-   	  	if (strpos($getPass, "#") == false && strpos($getPass, "?") == false && $getPass[0] !== "#" && $getPass[0] !== "?") {
-   	  	  $pass = "Password must contain a special character [Hint: # / ?].<br>";
-   	  	}
-   	  	$num_present = false;
-   	  	$upper_present = false;
-   	  	$lower_present = false;
-   	  	for ($i = 0; $i < strlen($getPass); $i++) {
-          if ($getPass[$i] >= '0' && $getPass[$i] <= '9') {
-          	$num_present = true;
-          }
-          if ($getPass[$i] >= 'A' && $getPass[$i] <= 'Z') {
-          	$upper_present = true; 
-          }
-          if ($getPass[$i] >= 'a' && $getPass[$i] <= 'z') {
-          	$lower_present = true;
-          }
-   	  	}
-   	  	if ($upper_present == false || $lower_present == false) {
-   	  	  $pass .= "Password must combine at lest one upper letter and one lower letter.<br>";
-   	  	}
-   	  	elseif ($num_present == false) {
-   	  	  $pass .= "Password must contain at least one numeric character."; 
-   	  	}
-		else $pass=htmlspecialchars($_POST["pass"]);
-   	    }
-   	
-		
-		// Confirm Password
-		if(empty($_POST["cpass"])){
-			$err_cpass="<sub>Please confirm your password</sub>";
+		if(empty ($_POST["pass"])){
+			$err_pass="<sub>Password Required</sub>";
 			$has_error = true;
-		}	
-		else{
-			$cpass=htmlspecialchars($_POST["cpass"]);
 		}
+		else if (strlen($_POST["pass"]) < 8) {
+			$err_pass = "<sub>Password must be 8 characters long</sub>";
+			$has_error = true;
+		}
+		else{
+			$pass=htmlspecialchars($_POST["pass"]);
+		}
+		
+		//Confirm password
+		if(empty ($_POST["cpass"])){
+			$err_cpass="<sub>Confirm your password</sub>";
+			$has_error = true;
+		}
+		else if($_POST["cpass"]!=$_POST["pass"]){
+			$err_cpass="<sub>Password and confirm password doesn't match</sub>";
+			$has_error = true;
+		}
+		
 		
 		//Gender
 		if(!isset($_POST["gender"])){
-			$err_gender="<sub>Plase select a gender</sub>";
+			$err_gender="<sub>Please select a gender</sub>";
 			$has_error = true;
 		}
 		else{
@@ -99,15 +73,15 @@
 		
 		//Email
 		if(empty($_POST["email"])){
-			$err_email="<sub>Plase give your email address</sub>";
+			$err_email="<sub>Please give your email address</sub>";
 			$has_error = true;
 		}
 		elseif(!strpos($_POST["email"],"@")){
 			$err_email="<sub>Invalid email address</sub>";
 			$has_error = true;
 		}
-		elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-			$err_email = "Invalid email format";
+		else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+			$err_email = "<sub>Invalid email address</sub>";
 			$has_error = true;
 		}
 		else{
@@ -131,13 +105,11 @@
 		//City
 	
 		 if (empty($_POST["city"])) {
-			$err_city = $err_city. "Select a city";
+			$err_city = "<sub>Select a city</sub>";
 		}
-		else {
-			$city=$_POST["city"];
-		}
+
 		
-		if(!$hasError){
+		if(!$has_error && isset($_POST["ok"])){
 			$users = simplexml_load_file("admins.xml");
 			
 			$user = $users->addChild("user");
@@ -147,22 +119,20 @@
 			$user->addChild("gender",$gender);
 			$user->addChild("email",$email);
 			$user->addChild("contact",$contact);
-			$user->addChild("city",$city);
 			$user->addChild("type","user");
-			echo "<pre>";
-			print_r($users);
-			echo "</pre>";
+			//echo "<pre>";
+			//print_r($users);
+			//echo "</pre>";
 			
 			$xml = new DOMDocument("1.0");
 			$xml->preserveWhiteSpace=false;
 			$xml->formatOutput= true;
 			$xml->loadXML($users->asXML());
 			
-			
 			$file = fopen("admins.xml","w");
 			fwrite($file,$xml->saveXML());
 			
-			//header("Location: login.php");
+			header("Location: Login.php");
 			
 		}
 	}

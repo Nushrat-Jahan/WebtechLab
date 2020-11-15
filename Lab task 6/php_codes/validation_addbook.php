@@ -1,4 +1,9 @@
 <?php
+	
+	if (!isset($_COOKIE["username"])) {
+    header("Location: login.php");
+    }
+	
 	$bname="";
 	$err_bname="";
 	$cat="";
@@ -13,35 +18,33 @@
 	$err_pg="";
 	$price="";
 	$err_price="";
-	$hasError=false;
+	$has_error=false;
 	
-	if(isset($_POST["register"])){
+	if(isset($_POST["add"])){
 		
-		//Book Name
+		//Book name
 		if(empty($_POST["bname"])){
-			$err_bname="<sub>Please write down your book name<sub>";
-			$has_error = true;
+			$err_bname="<sub>Please write down book name<sub>";
+			$has_error =true;	
 		}
 		else{
-			$bname=htmlspecialchars($_POST["bname"]);
+			$bname = htmlspecialchars($_POST["bname"]);
 		}
+		
 		
 		//category
 		if(empty($_POST["cat"])){
 			$err_cat="<sub>Please write down category<sub>";
-			$has_error = true;
+			$has_error =true;
 		}
-		else{
-			$cat=htmlspecialchars($_POST["cat"]);
-		}
-		
+
 		//publisher
 		if(empty($_POST["pub"])){
 			$err_pub="<sub>Please write down your publisher name<sub>";
 			$has_error = true;
 		}
 		else{
-			$cat=htmlspecialchars($_POST["pub"]);
+			$pub=htmlspecialchars($_POST["pub"]);
 		}
 		
 		//edition
@@ -67,8 +70,12 @@
 			$err_pg="<sub>Please write down page number<sub>";
 			$has_error = true;
 		}
+		else if(!is_numeric($_POST["pg"])){
+			$err_pg="<sub>Page number must be numeric</sub>";
+			$has_error = true;
+		}
 		else{
-			$ed=htmlspecialchars($_POST["pg"]);
+			$pg=htmlspecialchars($_POST["pg"]);
 		}
 		
 		//price
@@ -76,35 +83,46 @@
 			$err_price="<sub>Please write down your edition<sub>";
 			$has_error = true;
 		}
+		else if(!is_numeric($_POST["price"])){
+			$err_price="<sub>Price must be numeric</sub>";
+			$has_error = true;
+		}
 		else{
 			$price=htmlspecialchars($_POST["price"]);
 		}
-		if(!$hasError){
+		
+		if(!$has_error && isset($_POST["add"])){
 			$books = simplexml_load_file("books.xml");
 			
 			$book = $books->addChild("book");
 			$book->addChild("bookname",$bname);
-			$book->addChild("category",$cat);
 			$book->addChild("publisher",$pub);
 			$book->addChild("isbn",$isbn);
 			$book->addChild("pg",$pg);
 			$book->addChild("price",$price);
 		
+			//echo "<pre>";
+			//print_r($books);
+			//echo "</pre>";
 			
 			$xml = new DOMDocument("1.0");
 			$xml->preserveWhiteSpace=false;
 			$xml->formatOutput= true;
-			$xml->loadXML($users->asXML());
+			$xml->loadXML($books->asXML());
 			
 			
 			$file = fopen("books.xml","w");
 			fwrite($file,$xml->saveXML());
 			
-			//header("Location: login.php");
+			header("Location: Dashboard.php");
 			echo "Successfully added";
 	
 			
 		}
+	}
+	if(isset($_POST["goback"]))
+	{
+		header("Location: Dashboard.php");
 	}
 ?>
 		

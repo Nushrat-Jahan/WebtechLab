@@ -1,63 +1,64 @@
-
-<?php
-  if (!isset($_COOKIE["username"])) {
-    header("Location: Login.php");
-  }
-?>
+<?php include_once "php_codes/validation_dashboard.php" ;?>
 <html>
-	<head><title>
-		Dashboard
-	</title></head>
+	<title>Dashboard</title>
 	<body>
-				<img src="resources/headerlogo1">
-				<img src="resources/headerlogo1">
-				<table border="2"> 
-					<tr>
-						<td>
-							<a href="Addbook.php">Add New Book</a>
-						</td>
-					</tr>
-						<td> SR.NO</td>
-						<td>NAME</td>
-						<td>PUBLISHER</td>
-						<td>ISBN</td>
-						<td>PRICE</td>
-						<td>IMAGE</td>
-						<td>DELETE</td>
-					</tr>
-					<?php
-	$books=simplexml_load_file("books.xml");
 	
-	$data=books->book;
-	$no="";
-	$name="";
-	$pub="";
-	$isbn="";
-	$price="";
-	$img="";
-	$del="";
-	for ($i=0; $i<1 $i++)
-			{
-				$no=$data[$i]->no;
-				$name=$data[$i]->name;
-				$pub=$data[$i]->publisher;
-				$isbn=$data[$i]->isbn;
-				$price=$data[$i]->prince;
-				$img=$data[$i]->image;
-				$del=$data[$i]->del;
-				
-				echo "<tr>
-				<td>$no</td>
-				<td>$name</td>
-				<td>$pub</td>
-				<td>$isbn</td>
-				<td>$price</td>
-				<td><img src='$img' width='30px' height='30px'</td>
-				<td>$del</td>
-				</tr>";
-				
-			}
-?>
-				</table>
+			<table align="center">
+				<tr>
+					<td>
+						<span><img src="resources/img10.jpg" width=550px height=40px ></span>
+					</td>
+				</tr>
+		    </table>
+			<table align="center">
+				<tr>
+					<td>
+						<span><img src="resources/headerlogo1.jpg" width=500px height=150px ></span>
+					</td>
+				</tr>
+			</table>
+			<table align="center">
+				<tr>
+					<td>
+						<span><img src="resources/img10.jpg" width=500px height=40px ></span>
+					</td>
+				</tr>
+			</table>
+			<table border="1" style="padding:5px; outline: gray solid 10px;" align="center">
+				<tr>
+					<td colspan="7" align="left" >
+						<a href="AddBook.php"> Add a new book </a>
+					</td>
+				</tr>
+				<tr style=" text-decoration: underline;">
+					<td> SR NO. </td>
+					<td> NAME </td>
+					<td> PUBLISHER </td>
+					<td> ISBN </td>
+					<td> PRICE </td>
+					<td> IMAGE </td>
+					<td> DELETE </td>
+				</tr>
+                        
+                <?php
+                   $cnt = 0;
+                    foreach ($books as $i) {
+                      	$cnt++;
+                        echo "
+                             <tr>
+                                <td>   $cnt      </td>
+                                <td>   $i->bookname      </td>
+                                <td>   $i->publisher </td>
+                                <td>   $i->isbn      </td>
+								<td>   $i->price     </td> 
+                                <td>  <img src = 'resources/book_default.png' width=60px height=80px></td>
+                                <td> <img src='resources/drop.png' width=20px height=20px> </td>
+                             </tr>
+                            	";
+                            }
+                        ?>
+
+					</table>
+
 	</body>
 </html>

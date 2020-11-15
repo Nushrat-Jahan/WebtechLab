@@ -3,11 +3,20 @@
   <user>
     <fullname>Nushrat</fullname>
     <username>Nushrat_Jahan</username>
-    <password>Abc1?abc</password>
+    <password>11111111</password>
     <gender>Female</gender>
     <email>nushratjahan296@gmail.com</email>
     <contact>01915687338</contact>
-    <city/>
+    <city>Dhaka</city>
+    <type>user</type>
+  </user>
+  <user>
+    <fullname>Nushrat</fullname>
+    <username>Nushrat_Jahan</username>
+    <password>11111111</password>
+    <gender>Female</gender>
+    <email>nushratjahan296@gmail.com</email>
+    <contact>01915687338</contact>
     <type>user</type>
   </user>
 </users>
