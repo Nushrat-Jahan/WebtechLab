@@ -128,16 +128,21 @@
 		if(!$has_error && isset($_POST["ok"])){
 			$ed="<a href='#'>Edit</a>";
 			$dt="<a href='#'>Delete</a>";
-			mysqli_query($conn,"INSERT INTO users VALUES('1','".$uname."','".$pass."','user','".$ed."','".$dt."')");
+			$pass = md5($_POST["pass"])
+			$q = "INSERT INTO users VALUES(1,'".$uname."',".$pass.",'user','".$ed.",'".$dt."')";
+			mysqli_query($conn, $q);
 			$query="Select * from users";
-			$results=($conn,$query);
+			$results=mysqli_query($conn,$query);
 			if(mysqli_num_rows($results)>0)
 			{
 				echo '<table border="1" style="border-collapse:collapse;">';
 				echo "<tr>";
+				echo "<th> ID</th>";
 				echo "<th> Username </th>";
 				echo "<th> Password </th>";
 				echo "<th> Type </th>";
+				echo "<th> Edit </th>";
+				echo "<th> Delete </th>";
 				echo "</tr>";
 				
 				while($row = mysqli_fetch_assoc($results))
