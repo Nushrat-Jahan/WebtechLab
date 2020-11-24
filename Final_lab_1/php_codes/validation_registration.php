@@ -1,16 +1,7 @@
 <?php
 
-			$username="root";
-			$servername="localhost";
-			$password="";
-			$db = "final";
-			
-			
-			$conn = mysqli_connect($servername,$username,$password,$db);
-			if(!$conn)
-			{
-				die("Connection failed: " . mysqli_connect_error());
-			}
+	include_once "db_connection.php";
+						
 	$fname="";
 	$err_fname="";
 	$uname="";
@@ -126,40 +117,14 @@
 
 		
 		if(!$has_error && isset($_POST["ok"])){
-			$ed="<a href='#'>Edit</a>";
-			$dt="<a href='#'>Delete</a>";
-			$pass = md5($_POST["pass"])
-			$q = "INSERT INTO users VALUES(1,'".$uname."',".$pass.",'user','".$ed.",'".$dt."')";
-			mysqli_query($conn, $q);
-			$query="Select * from users";
-			$results=mysqli_query($conn,$query);
-			if(mysqli_num_rows($results)>0)
-			{
-				echo '<table border="1" style="border-collapse:collapse;">';
-				echo "<tr>";
-				echo "<th> ID</th>";
-				echo "<th> Username </th>";
-				echo "<th> Password </th>";
-				echo "<th> Type </th>";
-				echo "<th> Edit </th>";
-				echo "<th> Delete </th>";
-				echo "</tr>";
-				
-				while($row = mysqli_fetch_assoc($results))
-				{
-					echo "<tr>";
-					echo "<td>".$row["id"]."</td>";
-					echo "<td>".$row["username"]."</td>";
-					echo "<td>".$row["password"]."</td>";
-					echo "<td>".$row["user_type"]."</td>";
-					echo "<td>".$row["ed"]."</td>";
-					echo "<td>".$row["dt"]."</td>";
-					echo "</tr>";
-				}
-				echo "</table>";
-			}
+			$ed="Edit";
+			$dt="Delete";
+			$pass = md5($_POST["pass"]);
+			$qq = "INSERT INTO users VALUES (101,'".$uname."','".$pass."','user','".$ed."','".$dt."')";
+			mysqli_query($conn, $qq);
 			
-			//header("Location: Login.php");
+			
+			header("Location: Login.php");
 			
 		}
 	}
