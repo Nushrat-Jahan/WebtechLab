@@ -1,5 +1,5 @@
 <?php 
-	include_once'php_code/valid_user.php';
+	include_once'php_codes/valid_user.php';
 ?>
 
 <html>
