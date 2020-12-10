@@ -4,8 +4,8 @@
 	$students = getAllStudents();
 	
 ?>
-<!--All Products starts -->
-
+<!--All Students starts -->
+<form action="" method="post">
 <div class="center">
 	<h3 class="text">All Students</h3>
 	<table class="table table-striped">
@@ -16,8 +16,8 @@
 			<th> Credit</th>
 			<th> CGPA</th>
 			<th>Department</th>
-			<th></th>
-			<th></th>
+			<th>Edit</th>
+			<th>Delete</th>
 			
 		</thead>
 		<tbody>
@@ -30,8 +30,8 @@
 						echo "<td>".$s["credit"]."</td>";
 						echo "<td>".$s["cgpa"]."</td>";
 						echo "<td>".$s["department"]."</td>";
-						echo '<td><a href="editstudent.php" class="btn btn-success">Edit</a></td>';
-						echo '<td><a class="btn btn-danger">Delete</td>';
+						echo "<td><a href='editstudent.php?id=".$s["s_id"]."' class='btn btn-success'>Edit</a></td>";
+						echo "<td><a href='deletestudent.php?id=".$s["s_id"]."' class='btn btn-danger'>Delete</td>";
 					echo "</tr>";
 					
 				}
@@ -40,5 +40,6 @@
 		</tbody>
 	</table>
 </div>
-<!--Products ends -->
+</form>
+<!--Students ends -->
 <?php include 'main_footer.php';?>

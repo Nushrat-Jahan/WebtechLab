@@ -11,12 +11,18 @@ function validate(){
 	var err_password = getElement("err_password");
 	
 	if(e_username.value == ""){
-		hasErr= true;
+		
 		err_username.innerHTML = "*Username Required";
+		err_username.style.color = "red";
+		hasErr= true;
+		
 	}
 	if(e_password.value == ""){
-		hasErr= true;
+		
 		err_password.innerHTML = "*Password Required";
+		err_password.style.color = "red";
+		hasErr= true;
+	
 	}
 	return !hasErr;
 

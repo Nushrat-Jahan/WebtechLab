@@ -14,7 +14,7 @@
 			<a href="allstudents.php" class="btn btn-warning">All Students</a>
 			<a href="addstudent.php" class="btn btn-danger">Add Student</a>
 			<a href="alldepartments.php" class="btn btn-warning">All Departments</a>
-			<a href="adddepartmeent.php" class="btn btn-info">Add Department</a>
+			<a href="adddepartment.php" class="btn btn-info">Add Department</a>
 			<a href="login.php" class="btn btn-danger">Logout</a>		
 		</div>
 		<!--menu ends-->
